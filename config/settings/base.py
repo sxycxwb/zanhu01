@@ -6,8 +6,8 @@ import environ
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
-)  # (zanhu/config/settings/base.py - 3 = zanhu/)
-APPS_DIR = ROOT_DIR.path("zanhu")
+)  # (zanhu01/config/settings/base.py - 3 = zanhu01/)
+APPS_DIR = ROOT_DIR.path("zanhu01")
 
 env = environ.Env()
 
@@ -73,7 +73,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "zanhu.users.apps.UsersConfig",
+    "zanhu01.users.apps.UsersConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -82,7 +82,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "zanhu.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "zanhu01.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -179,7 +179,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "zanhu.utils.context_processors.settings_context",
+                "zanhu01.utils.context_processors.settings_context",
             ],
         },
     }
@@ -278,9 +278,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "zanhu.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "zanhu01.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "zanhu.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "zanhu01.users.adapters.SocialAccountAdapter"
 
 # django-compressor
 # ------------------------------------------------------------------------------
