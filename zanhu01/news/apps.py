@@ -6,5 +6,5 @@ from django.apps import AppConfig
 
 
 class NewsConfig(AppConfig):
-    name = 'news'
+    name = 'zanhu01.news'
     verbose_name='赞乎'

@@ -9,7 +9,7 @@ from django.utils.encoding import python_2_unicode_compatible
 
 from django.db import models
 from django.conf import settings
-
+from zanhu01.users.models import User
 
 class News(models.Model):
     uuid_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -18,7 +18,7 @@ class News(models.Model):
     parent = models.ForeignKey("self", blank=True, null=True, on_delete=models.CASCADE,
                                related_name="thread", verbose_name="自关联")
     content = models.TextField(verbose_name="动态内容")
-    liked = models.ManyToManyField(settings.AUTH_USER_MODEL,related_name='linked_news', verbose_name='点赞用户')
+    liked = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='linked_news', verbose_name='点赞用户')
     reply = models.BooleanField(default=False, verbose_name='是否为评论')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
@@ -47,7 +47,7 @@ class News(models.Model):
         else:
             return self
 
-    def reply_this(self,user,text):
+    def reply_this(self, user, text):
         """
         回复首页的动态
         :param user: 登录用户
@@ -64,7 +64,7 @@ class News(models.Model):
 
     def get_thread(self):
         """关联自己当前所有记录"""
-        parent = self.get_partent(),
+        parent = self.get_partent()
         return parent.thread.all()
 
     def comment_count(self):

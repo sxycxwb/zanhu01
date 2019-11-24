@@ -5,17 +5,19 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
-urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    path(
-        "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    ),
+from zanhu01.news.views import NewsListView
 
-    # User management
-    path("users/", include("zanhu01.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = [
+                  path('', NewsListView.as_view(), name='home'),
+
+                  # User management
+
+                  path('users/', include('zanhu01.users.urls', namespace='users')),
+                  path('accounts/', include('allauth.urls')),
+
+                  # Your stuff: custom urls includes go here
+                  path("news/", include("zanhu01.news.urls", namespace="news")),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
