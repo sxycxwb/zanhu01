@@ -11,6 +11,7 @@ from django.db import models
 from django.conf import settings
 from zanhu01.users.models import User
 
+
 class News(models.Model):
     uuid_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL,
@@ -75,6 +76,6 @@ class News(models.Model):
         """点赞数"""
         return self.liked.count()
 
-    def get_liked(self):
+    def get_likers(self):
         """获取点赞用户"""
         return self.liked.all()
